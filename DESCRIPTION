@@ -1,0 +1,24 @@
+Package: FARSUtil
+Type: Package
+Title: Summarizes and maps FARS data
+Version: 0.1.0
+Author: Jim Tyhurst
+Maintainer: Jim Tyhurst <jim@tyhurst.com>
+Description: Provides easy access to data from the US National Highway 
+    Traffic Safety Administration's Fatality Analysis Reporting System (FARS).
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Depends: R (>= 3.4.3)
+Imports:
+    dplyr (>= 0.7.4),
+    graphics (>= 3.4.3),
+    knitr (>= 1.17),
+    maps (>= 3.3.0),
+    readr (>= 1.1.1),
+    tidyr (>= 0.7.2)
+Suggests:
+    devtools (>= 1.13.4),
+    testthat (>= 2.0.0)
+RoxygenNote: 6.0.1
+VignetteBuilder: knitr

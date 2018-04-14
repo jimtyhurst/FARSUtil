@@ -1,0 +1,7 @@
+context("Summarize FARS data by year")
+
+test_that("valid integer year", {
+  testable <- fars_summarize_years(c(2015))
+  expect_equal(dim(testable), c(12, 2))
+  expect_equal(names(testable), c("MONTH", "2015"))
+})
