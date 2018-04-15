@@ -1,0 +1,51 @@
+---
+title: "Summarizing FARS data"
+author: "Jim Tyhurst"
+date: "4/14/2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(FARSUtil)
+```
+
+## FARSUtil
+
+This package provides easy access to data from the US National Highway Traffic Safety Administration's Fatality Analysis Reporting System ([FARS](https://www.nhtsa.gov/research-data/fatality-analysis-reporting-system-fars)). Data for years 2013-2015 are included in the package.
+
+### fars_summarize_years
+To view a summary by month and year for several years, call the `fars_summarize_years` function with an array of years. For example:
+
+```{r}
+# fars_summarize_years(years)
+fars_summarize_years(c(2013, 2014))
+```
+
+If you request a year for which there is no data, that year will not appear in the output and a warning message will be displayed:
+```{r}
+# Year '1905' is not in the data set, so a warning is produced.
+# However, the rest of the data is returned for year 2014 in this case:
+fars_summarize_years(c(1905, 2014))
+```
+
+### fars_map_state
+Another summary function, `fars_map_state`, provides a visualization of the data, showing the location of incidents on an outline map of a state for incidents occurring in a given year:
+```{r}
+# fars_map_state(state.num, year)
+# Incidents in Texas in 2015:
+fars_map_state(48, 2015)
+```
+
+Unfortunately, the data does not contain a key to the states. Valid state.num values are in the range [1, 55], although some of those values are invalid, such as 3:
+```{r error=TRUE}
+# Invalid state.num = 3 produces an error message:
+fars_map_state(3, 2015)
+```
+
+### Accessing the original data directly
+There are several functions that provide access to the underlying data used by the summary functions. Those utility functions are exported, so that you can use them also. See the R documentation for the following functions:
+
+    * make_filename(year)
+    * fars_read(filename)
+    * fars_read_years(years)
